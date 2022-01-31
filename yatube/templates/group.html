@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% extends "base.html" %}
+    <title>{% block title %}Записи сообщества {{ group.title }}{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+        <h1 class="text-center">{{ group.title }}</h1>
+        <p class="text-center">{{ group.description }}</p>
+        {% for post in page %}
+            {% include "post_item.html" with post=post %}
+        {% endfor %}
+        {% if page.has_other_pages %}
+                {% include "paginator.html" with items=page paginator=paginator %}
+        {% endif %}
+    {% endblock %}
+</body>
+</html>
