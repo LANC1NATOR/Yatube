@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: 'Yatube API'
+  title: Yatube API
   version: ''
   description: API starts with /api/v1/
 
@@ -442,6 +442,7 @@ paths:
     post:
       tags:
         - GROUP
+      summary: Creates a new group (only with admin rights)
       description: Creates a new group (only with admin rights)
       operationId: create_group
       parameters: []

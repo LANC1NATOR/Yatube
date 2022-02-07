@@ -8,16 +8,16 @@ from rest_framework_simplejwt.views import (
         TokenRefreshView,
     )
 
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register('v1/posts', PostViewSet)
 router.register(r'v1/posts/(?P<post_pk>\d+)/comments', CommentViewSet)
 router.register('v1/groups', GroupViewSet)
 router.register('v1/follow', FollowViewSet)
 
 urlpatterns = [
-    path('v1/token/', TokenObtainPairView.as_view(),
+    path('v1/token', TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path('v1/token/refresh/', TokenRefreshView.as_view(),
+    path('v1/token/refresh', TokenRefreshView.as_view(),
          name='token_refresh'),
     path('', include(router.urls)),
 ]
