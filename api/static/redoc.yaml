@@ -2,20 +2,25 @@ openapi: 3.0.2
 info:
   title: 'Yatube API'
   version: ''
-  description: API starts with /api/v1/
+  description: API starts with /api/v1
 
 servers:
   - url: /api/v1/
 
 tags:
   - name: POSTS
+    description: Posts
   - name: COMMENTS
+    description: Comments
   - name: AUTH
+    description: Tokens
   - name: FOLLOW
-  - name: GROUP
+    description: Followers and subscriptions
+  - name: GROUPS
+    description: Groups
 
 paths:
-  /posts/:
+  /posts:
     get:
       tags:
         - POSTS
@@ -52,7 +57,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
-  /posts/{id}/:
+  /posts/{id}:
     get:
       tags:
         - POSTS
@@ -149,7 +154,7 @@ paths:
       responses:
         204:
           description: ''
-  /posts/{post_id}/comments/:
+  /posts/{post_id}/comments:
     get:
       tags:
         - COMMENTS
@@ -188,7 +193,7 @@ paths:
             application/json:
               schema: {}
           description: ''
-  /posts/{post_id}/comments/{comment_id}/:
+  /posts/{post_id}/comments/{comment_id}:
     get:
       tags:
         - COMMENTS
@@ -278,7 +283,7 @@ paths:
       responses:
         204:
           description: ''
-  /token/:
+  /token:
     post:
       tags:
         - AUTH
@@ -309,7 +314,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
-  /token/refresh/:
+  /token/refresh:
     post:
       tags:
         - AUTH
@@ -336,7 +341,7 @@ paths:
                 - refresh
           description: ''
 
-  /follow/:
+  /follow:
     get:
       tags:
         - FOLLOW
@@ -385,7 +390,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Follow'
 
-  /group/:
+  /group:
     get:
       tags:
         - GROUP
@@ -506,6 +511,6 @@ components:
           type: string
           title: group name
         slug:
-          type: slug
+          type: string
           title: group slug
 
