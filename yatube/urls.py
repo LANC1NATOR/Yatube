@@ -31,8 +31,8 @@ urlpatterns = [
     path("auth/", include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
     path('about/', include('django.contrib.flatpages.urls')),
-    path('redoc/', TemplateView.as_view(template_name='redoc.html'),
-         name='redoc'),
+    path('api-doc/', TemplateView.as_view(template_name='api_doc.html'),
+         name='api_doc'),
 ]
 
 urlpatterns += [
