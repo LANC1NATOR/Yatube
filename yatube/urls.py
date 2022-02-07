@@ -19,6 +19,7 @@ from django.contrib.flatpages import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500, url
+from django.views.generic import TemplateView
 
 from django.views.static import serve
 
@@ -26,10 +27,15 @@ handler404 = 'posts.views.page_not_found'  # noqa
 handler500 = 'posts.views.server_error'  # noqa
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path("auth/", include("users.urls")),
     path("auth/", include("django.contrib.auth.urls")),
+    path('admin/', admin.site.urls),
     path('about/', include('django.contrib.flatpages.urls')),
+    path('redoc/', TemplateView.as_view(template_name='redoc.html'),
+         name='redoc'),
+]
+
+urlpatterns += [
     path('__debug__/', include('debug_toolbar.urls')),
     path('about-us/', views.flatpage, {'url': '/about-us/'}, name='about'),
     path('terms/', views.flatpage, {'url': '/terms/'}, name='terms'),
@@ -37,8 +43,14 @@ urlpatterns = [
          name='about-author'),
     path('about-spec/', views.flatpage, {'url': '/about-spec/'},
          name='about-spec'),
+]
+
+urlpatterns += [
+    path('api/', include('api.urls')),
+]
+
+urlpatterns += [
     path('', include('posts.urls')),
-    path('', include('api.urls')),
 ]
 
 if settings.DEBUG:
@@ -48,5 +60,4 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
 else:
     urlpatterns += url(r'^media/(?P<path>.*)$', serve,
-                       {'document_root': settings.MEDIA_ROOT}),
-
+                       {'document_root': settings.MEDIA_ROOT})

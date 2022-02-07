@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from distutils.util import strtobool
-
+from datetime import timedelta
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -40,6 +40,9 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+    'posts',
+    'api',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.flatpages',
@@ -51,12 +54,10 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'sorl.thumbnail',
     'django_extensions',
-    'users',
-    'posts',
-    'api',
+    'rest_framework',
+    'django_filters',
     'rest_framework.authtoken',
     'rest_framework.routers',
-    'rest_framework',
     'corsheaders',
 ]
 
@@ -66,8 +67,26 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_THROTTLE_CLASSES': [
+            'rest_framework.throttling.UserRateThrottle',
+            'rest_framework.throttling.AnonRateThrottle',
+    ],
+
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '10000/day',
+        'anon': '1000/day',
+    },
+
+    'DEFAULT_FILTER_BACKENDS':
+        ['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 MIDDLEWARE = [
