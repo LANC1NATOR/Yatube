@@ -38,7 +38,7 @@ urlpatterns = [
     path('about-spec/', views.flatpage, {'url': '/about-spec/'},
          name='about-spec'),
     path('', include('posts.urls')),
-
+    path('', include('api.urls')),
 ]
 
 if settings.DEBUG:
@@ -49,3 +49,4 @@ if settings.DEBUG:
 else:
     urlpatterns += url(r'^media/(?P<path>.*)$', serve,
                        {'document_root': settings.MEDIA_ROOT}),
+
