@@ -2,10 +2,10 @@ openapi: 3.0.2
 info:
   title: 'Yatube API'
   version: ''
-  description: API starts with /api/v1
+  description: API starts with /api/v1/
 
 servers:
-  - url: /api/v1/
+  - url: /api/v1
 
 tags:
   - name: POSTS
@@ -24,7 +24,9 @@ paths:
     get:
       tags:
         - POSTS
-      description: Get a list of all posts
+      summary: Gets a list of all posts
+      description: Gets a list of all posts
+      operationId: posts
       parameters:
       - name: group
         in: query
@@ -43,7 +45,9 @@ paths:
     post:
       tags:
         - POSTS
-      description: Create a new post
+      summary: Creates a new post
+      description: Creates a new post
+      operationId: new_post
       parameters: []
       requestBody:
         content:
@@ -61,7 +65,9 @@ paths:
     get:
       tags:
         - POSTS
-      description: Get post by id
+      summary: Gets post by id
+      description: Gets post by id
+      operationId: one_post
       parameters:
       - name: id
         in: path
@@ -85,7 +91,9 @@ paths:
     put:
       tags:
         - POSTS
-      description: 'Update post by id'
+      summary: Updates post by id
+      description: Update post by id
+      operationId: update_post
       parameters:
       - name: id
         in: path
@@ -114,7 +122,9 @@ paths:
     patch:
       tags:
         - POSTS
-      description: Partially update post by id
+      summary: Partially updates post by id
+      description: Partially updates post by id
+      operationId: patch_post
       parameters:
       - name: id
         in: path
@@ -143,7 +153,9 @@ paths:
     delete:
       tags:
         - POSTS
-      description: Delete post by id
+      summary: Deletes post by id
+      description: Deletes post by id
+      operationId: delete_post
       parameters:
       - name: id
         in: path
@@ -158,7 +170,9 @@ paths:
     get:
       tags:
         - COMMENTS
-      description: 'Get a list of all comments in a post'
+      summary: Gets a list of all comments in a post
+      description: Gets a list of all comments in a post
+      operationId: comments
       parameters:
       - name: post_id
         in: path
@@ -179,7 +193,9 @@ paths:
     post:
       tags:
         - COMMENTS
-      description: 'Create a new post comment'
+      summary: Creates a new post comment
+      description: Creates a new post comment
+      operationId: create_comment
       parameters:
       - name: post_id
         in: path
@@ -197,7 +213,9 @@ paths:
     get:
       tags:
         - COMMENTS
-      description: 'Get a comment for a post by id'
+      summary: Gets a comment for a post by id
+      description: Gets a comment for a post by id
+      operationId: one_comment
       parameters:
       - name: post_id
         in: path
@@ -220,7 +238,9 @@ paths:
     put:
       tags:
         - COMMENTS
-      description: 'Update post comment by id'
+      summary: Updates post comment by id
+      description: Updates post comment by id
+      operationId: put_comment
       parameters:
       - name: post_id
         in: path
@@ -243,7 +263,9 @@ paths:
     patch:
       tags:
         - COMMENTS
-      description: 'Partially update post comment by id'
+      summary: Partially updates post comment by id
+      description: Partially updates post comment by id
+      operationId: patch_comment
       parameters:
       - name: post_id
         in: path
@@ -266,7 +288,9 @@ paths:
     delete:
       tags:
         - COMMENTS
-      description: 'Delete comment for post by id'
+      summary: Deletes comment for post by id
+      description: Deletes comment for post by id
+      operationId: delete_comment
       parameters:
       - name: post_id
         in: path
@@ -287,7 +311,9 @@ paths:
     post:
       tags:
         - AUTH
-      description: Get a JWT token
+      summary: Gets a JWT token
+      description: Gets a JWT token
+      operationId: get_token
       requestBody:
         content:
           application/json:
@@ -318,7 +344,9 @@ paths:
     post:
       tags:
         - AUTH
-      description: Update a JWT token
+      summary: Updates a JWT token
+      description: Updates a JWT token
+      operationId: update_token
       parameters: []
       requestBody:
         content:
@@ -345,7 +373,9 @@ paths:
     get:
       tags:
         - FOLLOW
-      description: Get a list of all subscribers and subscriptions
+      summary: Gets a list of all subscribers and subscriptions
+      description: Gets a list of all subscribers and subscriptions
+      operationId: get_follow
       parameters:
       - name: search
         in: query
@@ -364,7 +394,9 @@ paths:
     post:
       tags:
         - FOLLOW
-      description: Create subscription
+      summary: Creates subscription
+      description: Creates subscription
+      operationId: create_follow
       parameters:
       - name: user
         in: query
@@ -394,7 +426,9 @@ paths:
     get:
       tags:
         - GROUP
-      description: Get a list of all groups
+      summary: Gets a list of all groups
+      description: Gets a list of all groups
+      operationId: groups
       parameters: []
       responses:
         200:
@@ -408,7 +442,8 @@ paths:
     post:
       tags:
         - GROUP
-      description: Create a new group (only with admin rights)
+      description: Creates a new group (only with admin rights)
+      operationId: create_group
       parameters: []
       requestBody:
         content:
