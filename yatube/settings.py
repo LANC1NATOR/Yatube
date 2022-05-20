@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = strtobool(os.getenv('DJANGO_DEBUG', 'no'))
 
 ALLOWED_HOSTS = [
-    "*",
+    "51.250.111.196", "localhost", "funsystems.gq", "www.funsystems.gq"
 ]
 
 # Application definition
