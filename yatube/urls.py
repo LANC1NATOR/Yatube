@@ -21,9 +21,6 @@ from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500, url
 from django.views.generic import TemplateView
 
-handler404 = 'posts.views.page_not_found'  # noqa
-handler500 = 'posts.views.server_error'  # noqa
-
 urlpatterns = [
     path("auth/", include("users.urls")),
     path("auth/", include("django.contrib.auth.urls")),
@@ -50,6 +47,9 @@ urlpatterns += [
 urlpatterns += [
     path('', include('posts.urls')),
 ]
+
+handler404 = 'posts.views.page_not_found'  # noqa
+handler500 = 'posts.views.server_error'  # noqa
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
