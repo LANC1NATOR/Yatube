@@ -9,5 +9,6 @@
     <orderEntry type="jdk" jdkName="Python 3.10 (Yatube)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="@popperjs/core" level="application" />
   </component>
 </module>

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from distutils.util import strtobool
 from datetime import timedelta
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,10 +32,6 @@ DEBUG = strtobool(os.getenv('DJANGO_DEBUG', 'no'))
 
 ALLOWED_HOSTS = [
     "*",
-    "localhost",
-    "127.0.0.1",
-    "[::1]",
-    "testserver",
 ]
 
 # Application definition
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'debug_toolbar',
     'sorl.thumbnail',
@@ -92,7 +88,6 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,6 +115,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -195,4 +191,3 @@ CACHES = {
     }
 }
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
